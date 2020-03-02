@@ -6,12 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
+import com.example.robodoc.blood_test.BloodTestActivity;
 import com.example.robodoc.menu.MenuPresenter;
 import com.example.robodoc.menu.MenuView;
-import com.example.robodoc.models.User;
+import com.example.robodoc.training.TrainingActivity;
 
 public class MainActivity extends AppCompatActivity implements MenuView, View.OnClickListener {
 

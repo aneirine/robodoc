@@ -1,14 +1,16 @@
-package com.example.robodoc;
+package com.example.robodoc.training;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class BloodTestActivity extends AppCompatActivity {
+import com.example.robodoc.R;
+
+public class TrainingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_blood_test);
+        setContentView(R.layout.activity_training);
     }
 }
