@@ -1,4 +1,4 @@
-package com.example.robodoc.menu;
+package com.example.robodoc.domain.menu_module;
 
 public class MenuPresenter {
 
@@ -8,7 +8,7 @@ public class MenuPresenter {
         this.menuView = menuView;
     }
 
-    public void activityTransfer(Class transferClass){
+    public void transferActivity(Class transferClass){
         menuView.transferActivity(transferClass);
     }
 }
