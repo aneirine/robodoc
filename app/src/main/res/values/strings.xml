@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">robodoc</string>
+    <string name="title_activity_blood_testactivity">BloodTestactivity</string>
+    <string name="title_activity_training">TrainingActivity</string>
+</resources>
