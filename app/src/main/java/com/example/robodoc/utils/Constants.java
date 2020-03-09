@@ -1,4 +1,4 @@
-package com.example.robodoc;
+package com.example.robodoc.utils;
 
 public class Constants {
 

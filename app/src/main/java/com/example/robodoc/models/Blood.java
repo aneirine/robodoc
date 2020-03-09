@@ -6,15 +6,18 @@ public class Blood {
     private double min;
     private double max;
     private Gender gender;
+    private Nominal nominal;
+
 
     public Blood() {
     }
 
-    public Blood(String name, double min, double max, Gender gender) {
+    public Blood(String name, double min, double max, Gender gender, Nominal nominal) {
         this.name = name;
         this.min = min;
         this.max = max;
         this.gender = gender;
+        this.nominal = nominal;
     }
 
     public String getName() {
@@ -47,5 +50,13 @@ public class Blood {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    public Nominal getNominal() {
+        return nominal;
+    }
+
+    public void setNominal(Nominal nominal) {
+        this.nominal = nominal;
     }
 }

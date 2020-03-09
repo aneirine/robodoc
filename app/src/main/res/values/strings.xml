@@ -2,4 +2,15 @@
     <string name="app_name">robodoc</string>
     <string name="title_activity_blood_testactivity">BloodTestactivity</string>
     <string name="title_activity_training">TrainingActivity</string>
+
+
+    <string name="choose_gender">Please, choose your gender</string>
+
+    <string name="hemoglobin">HB (Hemoglobin)</string>
+    <string name="red_blood_cells">RBC (Red blood cells)</string>
+
+
+    <string name="confirm_button">Confirm</string>
+
+
 </resources>

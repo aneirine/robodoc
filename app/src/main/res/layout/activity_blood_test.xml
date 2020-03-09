@@ -3,24 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".domain.blood_test.BloodTestActivity"
+    android:layout_marginHorizontal="50px"
     android:layout_marginVertical="50px"
-    android:layout_marginHorizontal="50px">
+    android:orientation="vertical"
+    tools:context=".domain.blood_test.BloodTestActivity">
 
     <TextView
-        android:layout_marginLeft="10px"
+        android:id="@+id/gender_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Please, choose your gender"
+        android:layout_marginLeft="10px"
+        android:text="@string/choose_gender"
         android:textSize="20sp">
 
     </TextView>
 
+
     <LinearLayout
         android:id="@+id/gender_linear_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2">
 
@@ -46,6 +48,25 @@
         </ImageButton>
 
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/hb_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hemoglobin"></EditText>
+
+    <EditText
+        android:id="@+id/rbc_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="RBC (Red blood cells)"></EditText>
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm_button">
+    </Button>
 
 
 </LinearLayout>
