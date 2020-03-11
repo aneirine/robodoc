@@ -1,18 +1,17 @@
 package com.example.robodoc;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.robodoc.domain.blood_test.BloodTestActivity;
 import com.example.robodoc.domain.menu_module.MenuPresenter;
 import com.example.robodoc.domain.menu_module.MenuView;
-
-import com.example.robodoc.domain.blood_test.*;
-import com.example.robodoc.domain.training.*;
-
+import com.example.robodoc.domain.training.TrainingActivity;
 
 
 public class MainActivity extends AppCompatActivity implements MenuView, View.OnClickListener {
@@ -20,13 +19,29 @@ public class MainActivity extends AppCompatActivity implements MenuView, View.On
     private MenuPresenter menuPresenter;
     private Button bloodTestButton, trainingButton;
 
+    private SharedPreferences prefs = null;
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (prefs.getBoolean("firstrun", true)) {
+            prefs.edit().putBoolean("firstrun", false).commit();
+        }
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        prefs = getSharedPreferences("com.mycompany.myAppName", MODE_PRIVATE);
+        menuPresenter = new MenuPresenter(this);
+
 
         initComponents();
-        menuPresenter = new MenuPresenter(this);
+
     }
 
     private void initComponents() {
