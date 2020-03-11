@@ -73,14 +73,7 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
 
 
     private void initBloodObjects() {
-        presenter.setBloodList(
-                new HashSet<>(Arrays.asList(
-                        new Blood("Hemoglobin", HB_MALE_MIN, HB_MALE_MAX, MALE, HB),
-                        new Blood("Hemoglobin", HB_FEMALE_MIN, HB_FEMALE_MAX, FEMALE, HB),
-                        new Blood("Red blood cells", RBC_MALE_MIN, RBC_MALE_MAX, MALE, RBC),
-                        new Blood("Red blood cells", RBC_FEMALE_MIN, RBC_FEMALE_MAX, FEMALE, RBC)
-                ))
-        );
+
 
     }
 
