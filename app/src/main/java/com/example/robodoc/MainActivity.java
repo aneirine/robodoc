@@ -1,16 +1,19 @@
 package com.example.robodoc;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.robodoc.blood_test.BloodTestActivity;
-import com.example.robodoc.menu.MenuPresenter;
-import com.example.robodoc.menu.MenuView;
-import com.example.robodoc.training.TrainingActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.robodoc.domain.menu_module.MenuPresenter;
+import com.example.robodoc.domain.menu_module.MenuView;
+
+import com.example.robodoc.domain.blood_test.*;
+import com.example.robodoc.domain.training.*;
+
+
 
 public class MainActivity extends AppCompatActivity implements MenuView, View.OnClickListener {
 
@@ -45,10 +48,10 @@ public class MainActivity extends AppCompatActivity implements MenuView, View.On
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_blood_test:
-                menuPresenter.activityTransfer(BloodTestActivity.class);
+                menuPresenter.transferActivity(BloodTestActivity.class);
                 break;
             case R.id.button_training:
-                menuPresenter.activityTransfer(TrainingActivity.class);
+                menuPresenter.transferActivity(TrainingActivity.class);
                 break;
             default:
                 break;
