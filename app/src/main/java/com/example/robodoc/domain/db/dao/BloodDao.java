@@ -1,4 +1,4 @@
-package com.example.robodoc.domain.dao;
+package com.example.robodoc.domain.db.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
