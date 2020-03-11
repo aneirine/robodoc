@@ -1,5 +1,7 @@
 package com.example.robodoc.models;
 
+import androidx.room.Entity;
+
 import com.example.robodoc.models.enums.Gender;
 import com.example.robodoc.models.enums.Nominal;
 

@@ -35,7 +35,17 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
-    compile 'net.sourceforge.streamsupport:streamsupport:1.7.1'
+    implementation 'net.sourceforge.streamsupport:streamsupport:1.7.1'
+
+    implementation 'android.arch.persistence.room:runtime:1.0.0-alpha1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha1'
+
+    implementation 'android.arch.lifecycle:extensions:1.0.0-alpha1'
+    annotationProcessor 'android.arch.lifecycle:compiler:1.0.0-alpha1'
+
+    implementation 'android.arch.persistence.room:rxjava2:1.0.0-alpha1'
+
+    testImplementation'android.arch.persistence.room:testing:1.0.0-alpha1'
 
     implementation "androidx.cardview:cardview:1.0.0"
 }
