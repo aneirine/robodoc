@@ -1,4 +1,4 @@
-package com.example.robodoc.models;
+package com.example.robodoc.models.enums;
 
 public enum Nominal {
 

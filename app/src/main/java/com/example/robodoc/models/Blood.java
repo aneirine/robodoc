@@ -1,5 +1,9 @@
 package com.example.robodoc.models;
 
+import com.example.robodoc.models.enums.Gender;
+import com.example.robodoc.models.enums.Nominal;
+
+
 public class Blood {
 
     private String name;

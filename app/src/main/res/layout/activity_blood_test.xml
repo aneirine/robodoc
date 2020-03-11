@@ -44,7 +44,6 @@
             android:layout_weight="1"
             android:src="@drawable/woman_icon">
 
-
         </ImageButton>
 
     </LinearLayout>
@@ -67,6 +66,13 @@
         android:layout_height="wrap_content"
         android:text="@string/confirm_button">
     </Button>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/resultTextView"
+        android:text="Result">
+    </TextView>
 
 
 </LinearLayout>

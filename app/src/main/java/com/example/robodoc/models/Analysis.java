@@ -1,6 +1,8 @@
 package com.example.robodoc.models;
 
 
+import com.example.robodoc.models.enums.Nominal;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,5 +1,8 @@
 package com.example.robodoc.models;
 
+import com.example.robodoc.models.enums.Nominal;
+import com.example.robodoc.models.enums.Range;
+
 public class Symptom {
 
     private String name;

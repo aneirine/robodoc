@@ -16,22 +16,23 @@ import com.example.robodoc.R;
 import com.example.robodoc.models.Analysis;
 import com.example.robodoc.models.Blood;
 import com.example.robodoc.models.Disease;
-import com.example.robodoc.models.Gender;
-import com.example.robodoc.models.Nominal;
-import com.example.robodoc.models.Range;
+import com.example.robodoc.models.enums.Gender;
+import com.example.robodoc.models.enums.Nominal;
 import com.example.robodoc.models.Symptom;
 import com.example.robodoc.utils.UtilMethods;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import static com.example.robodoc.models.Gender.FEMALE;
-import static com.example.robodoc.models.Gender.MALE;
-import static com.example.robodoc.models.Nominal.HB;
-import static com.example.robodoc.models.Nominal.RBC;
-import static com.example.robodoc.models.Range.LOWER;
-import static com.example.robodoc.models.Range.UPPER;
+import static com.example.robodoc.models.enums.Gender.FEMALE;
+import static com.example.robodoc.models.enums.Gender.MALE;
+import static com.example.robodoc.models.enums.Nominal.HB;
+import static com.example.robodoc.models.enums.Nominal.RBC;
+import static com.example.robodoc.models.enums.Range.LOWER;
+import static com.example.robodoc.models.enums.Range.UPPER;
 import static com.example.robodoc.utils.Constants.HB_FEMALE_MAX;
 import static com.example.robodoc.utils.Constants.HB_FEMALE_MIN;
 import static com.example.robodoc.utils.Constants.HB_MALE_MAX;
@@ -49,7 +50,7 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
     private Button confirmButton;
     private ImageButton maleImageButton, femaleImageButton;
     private BloodTestPresenter presenter;
-    private TextView genderTextView;
+    private TextView genderTextView, resultTextView;
 
     //переместить коллекции в презентер, написать для них методы
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -57,14 +58,17 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blood_test);
-
-
         presenter = new BloodTestPresenter(this);
+        initDB();
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void initDB() {
         initBloodObjects();
         initComponents();
         initSymptoms();
         initDiseases();
-
     }
 
 
@@ -92,10 +96,19 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
         );
     }
 
-    private void initDiseases(){
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void initDiseases() {
         presenter.setDiseaseSet(
                 new HashSet<>(Arrays.asList(
-                        new Disease()
+                        new Disease("Dehydration",
+                                Arrays.asList(
+                                        presenter.getSymptomByNominalAndRange(HB, UPPER)
+                                )),
+                        new Disease("Blood clotting",
+                                Arrays.asList(
+                                        presenter.getSymptomByNominalAndRange(HB, UPPER),
+                                        presenter.getSymptomByNominalAndRange(RBC, UPPER)
+                                ))
                 ))
         );
     }
@@ -111,6 +124,7 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
         maleImageButton = findViewById(R.id.male_gender_image_button);
         femaleImageButton = findViewById(R.id.female_gender_image_button);
         genderTextView = findViewById(R.id.gender_text_view);
+        resultTextView = findViewById(R.id.resultTextView);
 
         confirmButton.setOnClickListener(view -> confirm());
         maleImageButton.setOnClickListener(this);
@@ -128,8 +142,35 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private void defineDisease(Set<Analysis> analyses) {
+    private void createSymptoms(Set<Analysis> analyses) {
+        List<Symptom> symptoms = new ArrayList<>();
+        analyses.forEach(temp -> {
+            Blood blood = presenter.getBloodList()
+                    .stream().filter(
+                            o -> o.getNominal() == temp.getNominal()
+                                    && o.getGender() == presenter.getGender()
+                    ).findFirst().get();
+            if (blood.getMax() < temp.getValue()) {
+                symptoms.add(presenter.getSymptomByNominalAndRange(blood.getNominal(), UPPER));
+            } else if (blood.getMin() > temp.getValue()) {
+                symptoms.add(presenter.getSymptomByNominalAndRange(blood.getNominal(), LOWER));
+            }
+        });
 
+        defineDisease(symptoms);
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void defineDisease(List<Symptom> symptoms) {
+
+        List<Disease> diseases = presenter.findDiseaseBySymptoms(symptoms);
+        String str = "";
+        for (Disease temp : diseases) {
+            str += temp.getName();
+        }
+
+        resultTextView.setText(str);
 
     }
 
@@ -159,7 +200,7 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
 
         Toast.makeText(this, "" + analyses.size() + " " + presenter.getGender(), Toast.LENGTH_SHORT).show();
 
-        defineDisease(analyses);
+        createSymptoms(analyses);
     }
 
     @Override

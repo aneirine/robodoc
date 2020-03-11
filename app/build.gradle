@@ -35,5 +35,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
+    compile 'net.sourceforge.streamsupport:streamsupport:1.7.1'
+
     implementation "androidx.cardview:cardview:1.0.0"
 }
