@@ -1,12 +1,16 @@
 package com.example.robodoc.models;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.example.robodoc.models.enums.Gender;
 import com.example.robodoc.models.enums.Nominal;
 
-
+@Entity
 public class Blood {
+
+    @PrimaryKey
+    private long id;
 
     private String name;
     private double min;
