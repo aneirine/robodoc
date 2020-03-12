@@ -71,22 +71,7 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void initDiseases() {
-        presenter.setDiseaseSet(
-                new HashSet<>(Arrays.asList(
-                        new Disease("Dehydration",
-                                Arrays.asList(
-                                        presenter.getSymptomByNominalAndRange(HB, UPPER)
-                                )),
-                        new Disease("Blood clotting",
-                                Arrays.asList(
-                                        presenter.getSymptomByNominalAndRange(HB, UPPER),
-                                        presenter.getSymptomByNominalAndRange(RBC, UPPER)
-                                ))
-                ))
-        );
-    }
+
 
 
 
