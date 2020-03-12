@@ -5,7 +5,7 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.robodoc.domain.db.repository.BloodRepository;
+import com.example.robodoc.domain.db.blood.BloodRepository;
 import com.example.robodoc.models.Analysis;
 import com.example.robodoc.models.Blood;
 import com.example.robodoc.models.Disease;

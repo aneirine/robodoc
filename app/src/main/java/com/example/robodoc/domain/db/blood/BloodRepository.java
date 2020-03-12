@@ -1,9 +1,8 @@
-package com.example.robodoc.domain.db.repository;
+package com.example.robodoc.domain.db.blood;
 
 import android.content.Context;
 
 import com.example.robodoc.domain.db.Database;
-import com.example.robodoc.domain.db.dao.BloodDao;
 import com.example.robodoc.models.Blood;
 
 import java.util.List;

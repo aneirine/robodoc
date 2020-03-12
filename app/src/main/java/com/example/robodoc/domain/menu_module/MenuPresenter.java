@@ -2,7 +2,7 @@ package com.example.robodoc.domain.menu_module;
 
 import android.content.Context;
 
-import com.example.robodoc.domain.db.repository.BloodRepository;
+import com.example.robodoc.domain.db.blood.BloodRepository;
 
 import lombok.Getter;
 import lombok.Setter;

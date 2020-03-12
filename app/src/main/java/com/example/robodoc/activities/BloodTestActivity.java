@@ -46,7 +46,6 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
         setContentView(R.layout.activity_blood_test);
         presenter = new BloodTestPresenter(this, this);
 
-
         hbEditText = findViewById(R.id.hb_edit_text);
         rbcEditText = findViewById(R.id.rbc_edit_text);
         confirmButton = findViewById(R.id.confirm_button);
@@ -68,23 +67,9 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initDB() {
-
-        initSymptoms();
         initDiseases();
     }
 
-
-    private void initSymptoms() {
-        presenter.setSymptoms(
-                new HashSet<>(Arrays.asList(
-                        new Symptom("Hemoglobin is " + UPPER.getName(), UPPER, HB),
-                        new Symptom("Hemoglobin is " + LOWER.getName(), LOWER, HB),
-                        new Symptom("Red blood cells is " + UPPER.getName(), UPPER, RBC),
-                        new Symptom("Red blood cells is " + LOWER.getName(), LOWER, RBC)
-
-                ))
-        );
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initDiseases() {
@@ -103,11 +88,6 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
         );
     }
 
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void initComponents() {
-
-    }
 
 
     private void confirm() {
