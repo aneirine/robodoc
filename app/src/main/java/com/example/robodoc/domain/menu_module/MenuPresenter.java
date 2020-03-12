@@ -2,11 +2,7 @@ package com.example.robodoc.domain.menu_module;
 
 import android.content.Context;
 
-import com.example.robodoc.domain.db.Database;
 import com.example.robodoc.domain.db.repository.BloodRepository;
-import com.example.robodoc.models.Blood;
-
-import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -30,8 +26,6 @@ public class MenuPresenter {
     public void initDatabase() {
         bloodRepository.initBloodObjects();
     }
-
-
 
 
 }

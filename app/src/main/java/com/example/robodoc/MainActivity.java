@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity implements MenuView, View.On
     private Button bloodTestButton, trainingButton;
     private SharedPreferences prefs = null;
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -46,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements MenuView, View.On
         bloodTestButton.setOnClickListener(this);
         trainingButton.setOnClickListener(this);
     }
-
 
     @Override
     public void transferActivity(Class transferClass) {
