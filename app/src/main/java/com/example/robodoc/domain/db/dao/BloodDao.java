@@ -28,10 +28,10 @@ public interface BloodDao {
     @Query("SELECT * FROM blood")
     List<Blood> getAllBlood();
 
-    @Query("SELECT * FROM Blood WHERE id = :id ")
+    @Query("SELECT * FROM blood WHERE id = :id ")
     Blood getById(long id);
 
-    @Query("DELETE FROM Blood  WHERE id = :id")
+    @Query("DELETE FROM blood  WHERE id = :id")
     void deleteById(long id);
 
 
