@@ -1,7 +1,12 @@
 package com.example.robodoc.domain.db.repository;
 
+import android.content.Context;
+
+import com.example.robodoc.domain.db.Database;
 import com.example.robodoc.domain.db.dao.BloodDao;
 import com.example.robodoc.models.Blood;
+
+import java.util.List;
 
 import static com.example.robodoc.models.enums.Gender.FEMALE;
 import static com.example.robodoc.models.enums.Gender.MALE;
@@ -18,9 +23,13 @@ import static com.example.robodoc.utils.Constants.RBC_MALE_MIN;
 
 public class BloodRepository {
     private BloodDao dao;
+    private Context context;
 
-    public BloodRepository(BloodDao dao) {
-        this.dao = dao;
+
+    public BloodRepository(Context context) {
+        this.context = context;
+        this.dao = Database.getInstance(context).getBloodDao();
+
     }
 
     public void initBloodObjects() {
@@ -33,35 +42,29 @@ public class BloodRepository {
         dao.insertAll(blood);
     }
 
-    /*
-    *
-    *   public HistoryDocsRepository(DocumentDao dao) {
-        this.dao = dao;
+    public long insert(Blood blood) {
+        return dao.insert(blood);
     }
 
-    public long insert(Document document) {
-        return dao.insert(document);
+    public void update(Blood blood) {
+        dao.update(blood);
     }
 
-    public void update(Document document) {
-         dao.update(document);
+    public void delete(Blood blood) {
+        dao.delete(blood);
     }
 
-    public void delete(Document document) {
-        dao.delete(document);
+    public void deleteById(long id) {
+        dao.deleteById(id);
     }
 
-    public void deleteByPath(String path) {
-        dao.deleteDocumentByPath(path);
+    public List<Blood> getAll() {
+        return dao.getAllBlood();
     }
 
-    public List<Document> getAll() {
-        return dao.getAll();
-    }
-
-    public Document getById(long id) {
+    public Blood getById(long id) {
         return dao.getById(id);
-    }*/
+    }
 
 
 }

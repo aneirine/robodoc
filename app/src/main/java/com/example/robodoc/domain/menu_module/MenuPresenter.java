@@ -12,7 +12,7 @@ public class MenuPresenter {
         this.menuView = menuView;
     }
 
-    public void transferActivity(Class transferClass){
+    public void transferActivity(Class transferClass) {
         menuView.transferActivity(transferClass);
     }
 }
