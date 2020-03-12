@@ -1,9 +1,25 @@
 package com.example.robodoc.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.example.robodoc.models.enums.Nominal;
 import com.example.robodoc.models.enums.Range;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(tableName = "symptoms")
 public class Symptom {
+
+    @PrimaryKey(autoGenerate = true)
+    private long id;
 
     private String name;
     private Range range;
@@ -15,27 +31,5 @@ public class Symptom {
         this.nominal = nominal;
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Range getRange() {
-        return range;
-    }
-
-    public void setRange(Range range) {
-        this.range = range;
-    }
-
-    public Nominal getNominal() {
-        return nominal;
-    }
-
-    public void setNominal(Nominal nominal) {
-        this.nominal = nominal;
-    }
 }
