@@ -28,13 +28,10 @@ public class MenuPresenter {
     }
 
     public void initDatabase() {
-
         bloodRepository.initBloodObjects();
     }
 
-    public List<Blood> getBlood(){
-        return bloodRepository.getAll();
-    }
+
 
 
 }

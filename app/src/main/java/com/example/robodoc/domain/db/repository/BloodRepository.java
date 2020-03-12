@@ -29,20 +29,16 @@ public class BloodRepository {
     public BloodRepository(Context context) {
         this.context = context;
         this.dao = Database.getInstance(context).getBloodDao();
-
     }
 
     public void initBloodObjects() {
-
         Blood[] blood = {
                 new Blood("Hemoglobin", HB_MALE_MIN, HB_MALE_MAX, MALE, HB),
                 new Blood("Hemoglobin", HB_FEMALE_MIN, HB_FEMALE_MAX, FEMALE, HB),
                 new Blood("Red blood cells", RBC_MALE_MIN, RBC_MALE_MAX, MALE, RBC),
                 new Blood("Red blood cells", RBC_FEMALE_MIN, RBC_FEMALE_MAX, FEMALE, RBC)
         };
-        for(Blood temp : blood){
-            dao.insert(temp);
-        }
+        dao.insertAll(blood);
     }
 
     public long insert(Blood blood) {

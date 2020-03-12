@@ -27,9 +27,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.example.robodoc.models.enums.Gender.*;
-import static com.example.robodoc.models.enums.Nominal.*;
-import static com.example.robodoc.models.enums.Range.*;
+import static com.example.robodoc.models.enums.Gender.FEMALE;
+import static com.example.robodoc.models.enums.Gender.MALE;
+import static com.example.robodoc.models.enums.Nominal.HB;
+import static com.example.robodoc.models.enums.Nominal.RBC;
+import static com.example.robodoc.models.enums.Range.LOWER;
+import static com.example.robodoc.models.enums.Range.UPPER;
 
 public class BloodTestActivity extends AppCompatActivity implements BloodTestView, View.OnClickListener {
 
@@ -46,14 +49,13 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blood_test);
-        presenter = new BloodTestPresenter(this);
+        presenter = new BloodTestPresenter(this, this);
         initDB();
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initDB() {
-        // initBloodObjects();
         initComponents();
         initSymptoms();
         initDiseases();
@@ -100,7 +102,8 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
         genderTextView = findViewById(R.id.gender_text_view);
         resultTextView = findViewById(R.id.resultTextView);
 
-        confirmButton.setOnClickListener(view -> confirm());
+
+        confirmButton.setOnClickListener(this);
         maleImageButton.setOnClickListener(this);
         femaleImageButton.setOnClickListener(this);
 
@@ -109,9 +112,16 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void confirm() {
+        String text = "";
+        for (Blood temp : presenter.getRepository().getAll()) {
+            text += temp.getName() + " " + temp.getGender();
+        }
+
+        Toast.makeText(this, "" + text, Toast.LENGTH_SHORT).show();
+        /*
         if (presenter.getGender() == null) {
             Toast.makeText(this, R.string.choose_gender, Toast.LENGTH_SHORT).show();
-        } else createAnalysis();
+        } else createAnalysis();*/
     }
 
 
@@ -177,6 +187,7 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
         createSymptoms(analyses);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -185,6 +196,9 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
                 break;
             case R.id.female_gender_image_button:
                 presenter.changeGender(FEMALE);
+                break;
+            case R.id.confirm_button:
+                confirm();
                 break;
             default:
                 break;

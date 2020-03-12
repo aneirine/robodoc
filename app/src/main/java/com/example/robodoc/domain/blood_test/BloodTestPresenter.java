@@ -1,9 +1,11 @@
 package com.example.robodoc.domain.blood_test;
 
+import android.content.Context;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.robodoc.domain.db.repository.BloodRepository;
 import com.example.robodoc.models.Analysis;
 import com.example.robodoc.models.Blood;
 import com.example.robodoc.models.Disease;
@@ -29,6 +31,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BloodTestPresenter {
 
+    private BloodRepository repository;
     private Gender gender;
     private BloodTestView bloodTestView;
     private Patient patient;
@@ -36,17 +39,23 @@ public class BloodTestPresenter {
     private Set<Symptom> symptoms;
     private Set<Disease> diseaseSet;
 
-    public BloodTestPresenter(Gender gender, Patient patient, BloodTestView bloodTestView) {
+    public BloodTestPresenter(Gender gender, Patient patient, BloodTestView bloodTestView, Context context) {
         this.gender = gender;
         this.patient = patient;
         this.bloodTestView = bloodTestView;
         bloodList = new HashSet<>();
         diseaseSet = new HashSet<>();
         symptoms = new HashSet<>();
+        repository = new BloodRepository(context);
     }
 
     public BloodTestPresenter(BloodTestView bloodTestView) {
         this.bloodTestView = bloodTestView;
+    }
+
+    public BloodTestPresenter(BloodTestView bloodTestView, Context context) {
+        this.bloodTestView = bloodTestView;
+        repository = new BloodRepository(context);
     }
 
     public void changeGender(Gender gender) {
