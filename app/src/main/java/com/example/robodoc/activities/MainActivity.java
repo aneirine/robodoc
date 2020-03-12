@@ -1,4 +1,4 @@
-package com.example.robodoc;
+package com.example.robodoc.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.robodoc.domain.blood_test.BloodTestActivity;
+import com.example.robodoc.R;
 import com.example.robodoc.domain.db.Database;
 import com.example.robodoc.domain.menu_module.MenuPresenter;
 import com.example.robodoc.domain.menu_module.MenuView;
@@ -17,6 +17,7 @@ import com.example.robodoc.domain.training.TrainingActivity;
 
 public class MainActivity extends AppCompatActivity implements MenuView, View.OnClickListener {
 
+    private static final String PROJECT_NAME = "com.example.robodoc";
     private MenuPresenter menuPresenter;
     private Button bloodTestButton, trainingButton;
     private SharedPreferences prefs = null;
@@ -24,10 +25,10 @@ public class MainActivity extends AppCompatActivity implements MenuView, View.On
     @Override
     protected void onResume() {
         super.onResume();
-        if (prefs.getBoolean("firstrun", true)) {
+        if (prefs.getBoolean("firstRun", true)) {
             Database.getInstance(getBaseContext());
             menuPresenter.initDatabase();
-            prefs.edit().putBoolean("firstrun", false).commit();
+            prefs.edit().putBoolean("firstRun", false).commit();
         }
     }
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements MenuView, View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        prefs = getSharedPreferences("com.example.robodoc", MODE_PRIVATE);
+        prefs = getSharedPreferences(PROJECT_NAME, MODE_PRIVATE);
         menuPresenter = new MenuPresenter(this, this);
 
         bloodTestButton = findViewById(R.id.button_blood_test);

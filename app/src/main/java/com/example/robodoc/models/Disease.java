@@ -1,5 +1,8 @@
 package com.example.robodoc.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -11,10 +14,17 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity(tableName = "diseases")
 public class Disease {
+
+    @PrimaryKey(autoGenerate = true)
+    private long id;
 
     private String name;
     private List<Symptom> symptoms;
 
-
+    public Disease(String name, List<Symptom> symptoms) {
+        this.name = name;
+        this.symptoms = symptoms;
+    }
 }

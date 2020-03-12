@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".domain.training.TrainingActivity"></activity>
-        <activity android:name=".domain.blood_test.BloodTestActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.BloodTestActivity" />
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
