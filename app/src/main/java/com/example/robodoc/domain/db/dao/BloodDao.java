@@ -4,6 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.robodoc.models.Blood;
 
@@ -16,7 +17,10 @@ public interface BloodDao {
     void insertAll(Blood... bloods);
 
     @Insert
-    void insert(Blood blood);
+    long insert(Blood blood);
+
+    @Update
+    void update(Blood blood);
 
     @Delete
     void delete(Blood blood);
@@ -29,5 +33,8 @@ public interface BloodDao {
 
     @Query("DELETE FROM Blood  WHERE id = :id")
     void deleteById(long id);
+
+
+
 
 }

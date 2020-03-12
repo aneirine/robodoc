@@ -16,9 +16,9 @@ import com.example.robodoc.R;
 import com.example.robodoc.models.Analysis;
 import com.example.robodoc.models.Blood;
 import com.example.robodoc.models.Disease;
+import com.example.robodoc.models.Symptom;
 import com.example.robodoc.models.enums.Gender;
 import com.example.robodoc.models.enums.Nominal;
-import com.example.robodoc.models.Symptom;
 import com.example.robodoc.utils.UtilMethods;
 
 import java.util.ArrayList;
@@ -27,20 +27,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.example.robodoc.models.enums.Gender.FEMALE;
-import static com.example.robodoc.models.enums.Gender.MALE;
-import static com.example.robodoc.models.enums.Nominal.HB;
-import static com.example.robodoc.models.enums.Nominal.RBC;
-import static com.example.robodoc.models.enums.Range.LOWER;
-import static com.example.robodoc.models.enums.Range.UPPER;
-import static com.example.robodoc.utils.Constants.HB_FEMALE_MAX;
-import static com.example.robodoc.utils.Constants.HB_FEMALE_MIN;
-import static com.example.robodoc.utils.Constants.HB_MALE_MAX;
-import static com.example.robodoc.utils.Constants.HB_MALE_MIN;
-import static com.example.robodoc.utils.Constants.RBC_FEMALE_MAX;
-import static com.example.robodoc.utils.Constants.RBC_FEMALE_MIN;
-import static com.example.robodoc.utils.Constants.RBC_MALE_MAX;
-import static com.example.robodoc.utils.Constants.RBC_MALE_MIN;
+import static com.example.robodoc.models.enums.Gender.*;
+import static com.example.robodoc.models.enums.Nominal.*;
+import static com.example.robodoc.models.enums.Range.*;
 
 public class BloodTestActivity extends AppCompatActivity implements BloodTestView, View.OnClickListener {
 
@@ -52,7 +41,6 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
     private BloodTestPresenter presenter;
     private TextView genderTextView, resultTextView;
 
-    //переместить коллекции в презентер, написать для них методы
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,17 +53,12 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initDB() {
-        initBloodObjects();
+        // initBloodObjects();
         initComponents();
         initSymptoms();
         initDiseases();
     }
 
-
-    private void initBloodObjects() {
-
-
-    }
 
     private void initSymptoms() {
         presenter.setSymptoms(
@@ -106,8 +89,6 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
         );
     }
 
-    //симптомы сделать словарными, добавлять их просто по необходимоти. Они будут и в болезнях
-    // и в пациенте
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initComponents() {
