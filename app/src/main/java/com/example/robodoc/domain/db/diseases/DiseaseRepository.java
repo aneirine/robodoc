@@ -39,7 +39,7 @@ public class DiseaseRepository {
         }*/
     }
 
-    public long insert(Disease disease) {
+ /*   public long insert(Disease disease) {
         return dao.insert(disease);
     }
 
@@ -62,6 +62,6 @@ public class DiseaseRepository {
     public Disease getById(long id) {
         return dao.getById(id);
     }
-
+*/
 
 }

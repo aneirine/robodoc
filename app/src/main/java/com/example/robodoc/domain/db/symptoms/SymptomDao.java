@@ -25,8 +25,8 @@ public interface SymptomDao {
     @Delete
     void delete(Symptom symptom);
 
-    @Query("SELECT * FROM symptoms")
-    List<Symptom> getAllSymptom();
+    @Query("SELECT * From symptoms")
+    List<Symptom> getAllSymptoms();
 
     @Query("SELECT * FROM symptoms WHERE id = :id ")
     Symptom getById(long id);

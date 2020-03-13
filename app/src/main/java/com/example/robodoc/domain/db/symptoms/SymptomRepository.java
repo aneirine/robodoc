@@ -22,6 +22,7 @@ public class SymptomRepository {
         this.context = context;
         this.dao = Database.getInstance(context).getSymptomDao();
     }
+/*
 
     public void initSymptomObjects() {
         Symptom[] symptoms = {
@@ -50,12 +51,13 @@ public class SymptomRepository {
     }
 
     public List<Symptom> getAll() {
-        return dao.getAllSymptom();
+        return dao.getAllSymptoms();
     }
 
     public Symptom getById(long id) {
         return dao.getById(id);
     }
 
+*/
 
 }

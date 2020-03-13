@@ -29,8 +29,8 @@ public class MenuPresenter {
 
     public void initDatabase() {
         bloodRepository.initBloodObjects();
-        symptomRepository.initSymptomObjects();
-        diseaseRepository.initDiseaseObject();
+       // symptomRepository.initSymptomObjects();
+        //diseaseRepository.initDiseaseObject();
     }
 
 

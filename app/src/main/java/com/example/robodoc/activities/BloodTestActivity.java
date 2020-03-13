@@ -61,19 +61,8 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
 
         editTextSet = new HashSet<>(Arrays.asList(hbEditText, rbcEditText));
 
-        initDB();
 
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void initDB() {
-        initDiseases();
-    }
-
-
-
-
-
 
     private void confirm() {
         if (presenter.getGender() == null) {
