@@ -1,4 +1,4 @@
-package com.example.robodoc.domain.blood_test;
+package com.example.robodoc.activities;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -13,26 +13,24 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.robodoc.R;
-import com.example.robodoc.models.Analysis;
-import com.example.robodoc.models.Blood;
+import com.example.robodoc.domain.blood_test.BloodTestPresenter;
+import com.example.robodoc.domain.blood_test.BloodTestView;
 import com.example.robodoc.models.Disease;
 import com.example.robodoc.models.Symptom;
 import com.example.robodoc.models.enums.Gender;
-import com.example.robodoc.models.enums.Nominal;
-import com.example.robodoc.utils.UtilMethods;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import static com.example.robodoc.models.enums.Gender.*;
-import static com.example.robodoc.models.enums.Nominal.*;
-import static com.example.robodoc.models.enums.Range.*;
+import static com.example.robodoc.models.enums.Gender.FEMALE;
+import static com.example.robodoc.models.enums.Gender.MALE;
+import static com.example.robodoc.models.enums.Nominal.HB;
+import static com.example.robodoc.models.enums.Nominal.RBC;
+import static com.example.robodoc.models.enums.Range.LOWER;
+import static com.example.robodoc.models.enums.Range.UPPER;
 
 public class BloodTestActivity extends AppCompatActivity implements BloodTestView, View.OnClickListener {
-
 
     private EditText hbEditText, rbcEditText;
     private Set<EditText> editTextSet;
@@ -46,52 +44,8 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_blood_test);
-        presenter = new BloodTestPresenter(this);
-        initDB();
+        presenter = new BloodTestPresenter(this, this);
 
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void initDB() {
-        // initBloodObjects();
-        initComponents();
-        initSymptoms();
-        initDiseases();
-    }
-
-
-    private void initSymptoms() {
-        presenter.setSymptoms(
-                new HashSet<>(Arrays.asList(
-                        new Symptom("Hemoglobin is " + UPPER.getName(), UPPER, HB),
-                        new Symptom("Hemoglobin is " + LOWER.getName(), LOWER, HB),
-                        new Symptom("Red blood cells is " + UPPER.getName(), UPPER, RBC),
-                        new Symptom("Red blood cells is " + LOWER.getName(), LOWER, RBC)
-
-                ))
-        );
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void initDiseases() {
-        presenter.setDiseaseSet(
-                new HashSet<>(Arrays.asList(
-                        new Disease("Dehydration",
-                                Arrays.asList(
-                                        presenter.getSymptomByNominalAndRange(HB, UPPER)
-                                )),
-                        new Disease("Blood clotting",
-                                Arrays.asList(
-                                        presenter.getSymptomByNominalAndRange(HB, UPPER),
-                                        presenter.getSymptomByNominalAndRange(RBC, UPPER)
-                                ))
-                ))
-        );
-    }
-
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void initComponents() {
         hbEditText = findViewById(R.id.hb_edit_text);
         rbcEditText = findViewById(R.id.rbc_edit_text);
         confirmButton = findViewById(R.id.confirm_button);
@@ -100,22 +54,26 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
         genderTextView = findViewById(R.id.gender_text_view);
         resultTextView = findViewById(R.id.resultTextView);
 
-        confirmButton.setOnClickListener(view -> confirm());
+
+        confirmButton.setOnClickListener(this);
         maleImageButton.setOnClickListener(this);
         femaleImageButton.setOnClickListener(this);
 
         editTextSet = new HashSet<>(Arrays.asList(hbEditText, rbcEditText));
+
+
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void confirm() {
         if (presenter.getGender() == null) {
             Toast.makeText(this, R.string.choose_gender, Toast.LENGTH_SHORT).show();
-        } else createAnalysis();
+        } else {
+            //createAnalysis();
+        }
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    /*@RequiresApi(api = Build.VERSION_CODES.N)
     private void createSymptoms(Set<Analysis> analyses) {
         List<Symptom> symptoms = new ArrayList<>();
         analyses.forEach(temp -> {
@@ -133,10 +91,10 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
 
         defineDisease(symptoms);
 
-    }
+    }*/
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void defineDisease(List<Symptom> symptoms) {
+
+   /* private void defineDisease(List<Symptom> symptoms) {
 
         List<Disease> diseases = presenter.findDiseaseBySymptoms(symptoms);
         String str = "";
@@ -146,10 +104,10 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
 
         resultTextView.setText(str);
 
-    }
+    }*/
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void createAnalysis() {
+
+  /*  private void createAnalysis() {
         UtilMethods utilMethods = new UtilMethods();
         Set<Analysis> analyses = new HashSet<>();
         editTextSet.forEach(temp -> {
@@ -176,6 +134,7 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
 
         createSymptoms(analyses);
     }
+*/
 
     @Override
     public void onClick(View view) {
@@ -185,6 +144,9 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
                 break;
             case R.id.female_gender_image_button:
                 presenter.changeGender(FEMALE);
+                break;
+            case R.id.confirm_button:
+                confirm();
                 break;
             default:
                 break;
