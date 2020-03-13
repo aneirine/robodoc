@@ -10,14 +10,17 @@ import com.example.robodoc.domain.db.analysis.AnalysisDao;
 import com.example.robodoc.domain.db.blood.BloodDao;
 import com.example.robodoc.domain.db.converters.Converters;
 import com.example.robodoc.domain.db.diseases.DiseaseDao;
+import com.example.robodoc.domain.db.patient.PatientDao;
 import com.example.robodoc.domain.db.symptoms.SymptomDao;
 import com.example.robodoc.models.Analysis;
 import com.example.robodoc.models.Blood;
 import com.example.robodoc.models.Disease;
+import com.example.robodoc.models.Patient;
 import com.example.robodoc.models.Symptom;
 
 
-@androidx.room.Database(entities = {Blood.class, Symptom.class, Disease.class, Analysis.class}, version = 2)
+@androidx.room.Database(entities = {Blood.class, Symptom.class,
+        Disease.class, Analysis.class, Patient.class}, version = 2)
 @TypeConverters(Converters.class)
 public abstract class Database extends RoomDatabase {
     private static final String DATABASE_NAME = "robodoc-database";
@@ -30,6 +33,8 @@ public abstract class Database extends RoomDatabase {
 
     public abstract AnalysisDao getAnalysisDao();
 
+    public abstract PatientDao getPatientDao();
+
     private static Database instance;
 
     public static Database getInstance(Context context) {
@@ -41,6 +46,7 @@ public abstract class Database extends RoomDatabase {
         }
         return instance;
     }
+
 
 
 }

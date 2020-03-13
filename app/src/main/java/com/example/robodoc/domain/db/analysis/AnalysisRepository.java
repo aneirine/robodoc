@@ -19,7 +19,6 @@ public class AnalysisRepository {
     }
 
 
-
     public long insert(Analysis analysis) {
         return dao.insert(analysis);
     }

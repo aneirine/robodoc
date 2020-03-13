@@ -35,17 +35,12 @@ public class BloodTestPresenter {
     private Gender gender;
     private BloodTestView bloodTestView;
     private Patient patient;
-    private Set<Blood> bloodList;
-    private Set<Symptom> symptoms;
-    private Set<Disease> diseaseSet;
 
-    public BloodTestPresenter(Gender gender, Patient patient, BloodTestView bloodTestView, Context context) {
+    public BloodTestPresenter(Gender gender, Patient patient,
+                              BloodTestView bloodTestView, Context context) {
         this.gender = gender;
         this.patient = patient;
         this.bloodTestView = bloodTestView;
-        bloodList = new HashSet<>();
-        diseaseSet = new HashSet<>();
-        symptoms = new HashSet<>();
         repository = new BloodRepository(context);
     }
 
@@ -64,7 +59,7 @@ public class BloodTestPresenter {
     }
 
     public void constructPatient(List<Analysis> analyses, String name) {
-        this.patient = new Patient(name, this.getGender(), analyses);
+        this.patient = new Patient();
     }
 
     public void createAnalysis(){}
