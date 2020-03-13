@@ -15,8 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.robodoc.R;
 import com.example.robodoc.domain.blood_test.BloodTestPresenter;
 import com.example.robodoc.domain.blood_test.BloodTestView;
-import com.example.robodoc.models.Disease;
-import com.example.robodoc.models.Symptom;
 import com.example.robodoc.models.enums.Gender;
 
 import java.util.Arrays;
@@ -25,10 +23,6 @@ import java.util.Set;
 
 import static com.example.robodoc.models.enums.Gender.FEMALE;
 import static com.example.robodoc.models.enums.Gender.MALE;
-import static com.example.robodoc.models.enums.Nominal.HB;
-import static com.example.robodoc.models.enums.Nominal.RBC;
-import static com.example.robodoc.models.enums.Range.LOWER;
-import static com.example.robodoc.models.enums.Range.UPPER;
 
 public class BloodTestActivity extends AppCompatActivity implements BloodTestView, View.OnClickListener {
 
@@ -54,14 +48,11 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
         genderTextView = findViewById(R.id.gender_text_view);
         resultTextView = findViewById(R.id.resultTextView);
 
-
         confirmButton.setOnClickListener(this);
         maleImageButton.setOnClickListener(this);
         femaleImageButton.setOnClickListener(this);
 
         editTextSet = new HashSet<>(Arrays.asList(hbEditText, rbcEditText));
-
-
     }
 
     private void confirm() {

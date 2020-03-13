@@ -6,16 +6,18 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
+import com.example.robodoc.domain.db.analysis.AnalysisDao;
 import com.example.robodoc.domain.db.blood.BloodDao;
 import com.example.robodoc.domain.db.converters.Converters;
 import com.example.robodoc.domain.db.diseases.DiseaseDao;
 import com.example.robodoc.domain.db.symptoms.SymptomDao;
+import com.example.robodoc.models.Analysis;
 import com.example.robodoc.models.Blood;
 import com.example.robodoc.models.Disease;
 import com.example.robodoc.models.Symptom;
 
 
-@androidx.room.Database(entities = {Blood.class, Symptom.class, Disease.class}, version = 2)
+@androidx.room.Database(entities = {Blood.class, Symptom.class, Disease.class, Analysis.class}, version = 2)
 @TypeConverters(Converters.class)
 public abstract class Database extends RoomDatabase {
     private static final String DATABASE_NAME = "robodoc-database";
@@ -25,6 +27,8 @@ public abstract class Database extends RoomDatabase {
     public abstract SymptomDao getSymptomDao();
 
     public abstract DiseaseDao getDiseaseDao();
+
+    public abstract AnalysisDao getAnalysisDao();
 
     private static Database instance;
 

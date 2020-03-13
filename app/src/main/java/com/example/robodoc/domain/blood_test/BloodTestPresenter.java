@@ -65,19 +65,11 @@ public class BloodTestPresenter {
 
     public void constructPatient(List<Analysis> analyses, String name) {
         this.patient = new Patient(name, this.getGender(), analyses);
-
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public Symptom getSymptomByNominalAndRange(Nominal nominal, Range range) {
+    public void createAnalysis(){}
 
-        return symptoms.stream().filter(
-                o -> o.getNominal() == nominal && o.getRange() == range
-        ).findFirst().get();
-
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
+ /*   @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Disease> findDiseaseBySymptoms(List<Symptom> symptoms) {
         List<Disease> diseases = new ArrayList<>();
         for (Disease temp : this.diseaseSet) {
@@ -87,5 +79,5 @@ public class BloodTestPresenter {
         }
 
         return diseases;
-    }
+    }*/
 }
