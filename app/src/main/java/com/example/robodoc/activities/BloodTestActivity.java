@@ -26,7 +26,7 @@ import static com.example.robodoc.models.enums.Gender.MALE;
 
 public class BloodTestActivity extends AppCompatActivity implements BloodTestView, View.OnClickListener {
 
-    private EditText hbEditText, rbcEditText;
+    private EditText nameEditText, hbEditText, rbcEditText;
     private Set<EditText> editTextSet;
     private Button confirmButton;
     private ImageButton maleImageButton, femaleImageButton;
@@ -40,6 +40,7 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
         setContentView(R.layout.activity_blood_test);
         presenter = new BloodTestPresenter(this, this);
 
+        nameEditText = findViewById(R.id.name_edit_text);
         hbEditText = findViewById(R.id.hb_edit_text);
         rbcEditText = findViewById(R.id.rbc_edit_text);
         confirmButton = findViewById(R.id.confirm_button);
@@ -59,6 +60,7 @@ public class BloodTestActivity extends AppCompatActivity implements BloodTestVie
         if (presenter.getGender() == null) {
             Toast.makeText(this, R.string.choose_gender, Toast.LENGTH_SHORT).show();
         } else {
+            presenter.createAnalysis(nameEditText, editTextSet);
             //createAnalysis();
         }
     }

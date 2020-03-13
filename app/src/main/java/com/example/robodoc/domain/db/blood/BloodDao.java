@@ -7,6 +7,8 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.robodoc.models.Blood;
+import com.example.robodoc.models.enums.Gender;
+import com.example.robodoc.models.enums.Nominal;
 
 import java.util.List;
 
@@ -31,10 +33,10 @@ public interface BloodDao {
     @Query("SELECT * FROM blood WHERE id = :id ")
     Blood getById(long id);
 
-    @Query("DELETE FROM blood  WHERE id = :id")
+    @Query("DELETE FROM blood WHERE id = :id")
     void deleteById(long id);
 
 
-
-
+    @Query("SELECT * FROM blood WHERE nominal = :nominal AND gender = :gender")
+    Blood findByNominalAndGender(Nominal nominal, Gender gender);
 }

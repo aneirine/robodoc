@@ -49,6 +49,13 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name"></EditText>
+
+
+    <EditText
         android:id="@+id/hb_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

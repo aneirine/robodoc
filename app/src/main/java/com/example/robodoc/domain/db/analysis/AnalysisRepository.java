@@ -44,5 +44,7 @@ public class AnalysisRepository {
     }
 
 
-
+    public void insertAll(Analysis... analyses) {
+        dao.insertAll(analyses);
+    }
 }

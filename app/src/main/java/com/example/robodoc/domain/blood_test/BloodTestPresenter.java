@@ -1,23 +1,21 @@
 package com.example.robodoc.domain.blood_test;
 
 import android.content.Context;
-import android.os.Build;
+import android.widget.EditText;
 
-import androidx.annotation.RequiresApi;
-
+import com.example.robodoc.domain.db.analysis.AnalysisRepository;
 import com.example.robodoc.domain.db.blood.BloodRepository;
+import com.example.robodoc.domain.db.patient.PatientRepository;
 import com.example.robodoc.models.Analysis;
 import com.example.robodoc.models.Blood;
-import com.example.robodoc.models.Disease;
+import com.example.robodoc.models.Patient;
 import com.example.robodoc.models.enums.Gender;
 import com.example.robodoc.models.enums.Nominal;
-import com.example.robodoc.models.Patient;
-import com.example.robodoc.models.enums.Range;
-import com.example.robodoc.models.Symptom;
+import com.example.robodoc.utils.UtilMethods;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import lombok.AllArgsConstructor;
@@ -31,26 +29,17 @@ import lombok.Setter;
 @NoArgsConstructor
 public class BloodTestPresenter {
 
-    private BloodRepository repository;
+    private BloodRepository bloodRepository;
+    private AnalysisRepository analysisRepository;
+    private PatientRepository patientRepository;
     private Gender gender;
     private BloodTestView bloodTestView;
-    private Patient patient;
-
-    public BloodTestPresenter(Gender gender, Patient patient,
-                              BloodTestView bloodTestView, Context context) {
-        this.gender = gender;
-        this.patient = patient;
-        this.bloodTestView = bloodTestView;
-        repository = new BloodRepository(context);
-    }
-
-    public BloodTestPresenter(BloodTestView bloodTestView) {
-        this.bloodTestView = bloodTestView;
-    }
 
     public BloodTestPresenter(BloodTestView bloodTestView, Context context) {
         this.bloodTestView = bloodTestView;
-        repository = new BloodRepository(context);
+        bloodRepository = new BloodRepository(context);
+        analysisRepository = new AnalysisRepository(context);
+        patientRepository = new PatientRepository(context);
     }
 
     public void changeGender(Gender gender) {
@@ -58,11 +47,32 @@ public class BloodTestPresenter {
         bloodTestView.changeGender(gender);
     }
 
-    public void constructPatient(List<Analysis> analyses, String name) {
-        this.patient = new Patient();
+    public void createPatient(List<Analysis> analyses, String name) {
+        int randomInteger = new Random().nextInt();
+        Patient patient = new Patient(
+                name, "surname " + randomInteger, randomInteger, this.gender, (ArrayList<Analysis>) analyses
+        );
+
+        patientRepository.insert(patient);
     }
 
-    public void createAnalysis(){}
+    public void createAnalysis(EditText nameEditText, Set<EditText> editTextSet) {
+        List<Analysis> analyses = new ArrayList<>();
+        UtilMethods utilMethods = new UtilMethods();
+        for (EditText temp : editTextSet) {
+            if (temp.getText() != null) {
+                String hint = temp.getHint().toString();
+                Nominal nominal = Nominal.valueOf(utilMethods.createNominal(hint));
+                Blood blood = bloodRepository.findByNominalAndGender(nominal, this.gender);
+                Analysis analysis = new Analysis(
+                        blood.getName(), nominal, Double.valueOf(temp.getText().toString())
+                );
+                analyses.add(analysis);
+            }
+        }
+        analysisRepository.insertAll(analyses.toArray(new Analysis[analyses.size()]));
+        createPatient(analyses, nameEditText.getText().toString());
+    }
 
  /*   @RequiresApi(api = Build.VERSION_CODES.N)
     public List<Disease> findDiseaseBySymptoms(List<Symptom> symptoms) {

@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.example.robodoc.domain.db.Database;
 import com.example.robodoc.models.Blood;
+import com.example.robodoc.models.enums.Gender;
+import com.example.robodoc.models.enums.Nominal;
 
 import java.util.List;
 
@@ -65,4 +67,7 @@ public class BloodRepository {
     }
 
 
+    public Blood findByNominalAndGender(Nominal nominal, Gender gender) {
+        return dao.findByNominalAndGender(nominal, gender);
+    }
 }

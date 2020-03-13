@@ -11,6 +11,7 @@
 
 
     <string name="confirm_button">Confirm</string>
+    <string name="name">Name</string>
 
 
 </resources>

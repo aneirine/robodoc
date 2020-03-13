@@ -25,4 +25,9 @@ public class Analysis {
     private Nominal nominal;
     private double value;
 
+    public Analysis(String name, Nominal nominal, double value) {
+        this.name = name;
+        this.nominal = nominal;
+        this.value = value;
+    }
 }
