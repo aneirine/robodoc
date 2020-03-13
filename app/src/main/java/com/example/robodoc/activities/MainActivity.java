@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +14,10 @@ import com.example.robodoc.domain.db.Database;
 import com.example.robodoc.domain.menu_module.MenuPresenter;
 import com.example.robodoc.domain.menu_module.MenuView;
 import com.example.robodoc.domain.training.TrainingActivity;
+import com.example.robodoc.models.Symptom;
+import com.example.robodoc.models.enums.Range;
+
+import static com.example.robodoc.models.enums.Nominal.HB;
 
 
 public class MainActivity extends AppCompatActivity implements MenuView, View.OnClickListener {
@@ -26,9 +31,11 @@ public class MainActivity extends AppCompatActivity implements MenuView, View.On
     protected void onResume() {
         super.onResume();
         if (prefs.getBoolean("firstRun", true)) {
+
             Database.getInstance(getBaseContext());
             menuPresenter.initDatabase();
             prefs.edit().putBoolean("firstRun", false).commit();
+
         }
     }
 

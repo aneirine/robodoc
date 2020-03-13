@@ -12,7 +12,7 @@ import java.util.List;
 
 @Dao
 public interface DiseaseDao {
-/*
+
     @Insert
     void insertAll(Disease... diseases);
 
@@ -32,6 +32,6 @@ public interface DiseaseDao {
     Disease getById(long id);
 
     @Query("DELETE FROM diseases WHERE id = :id")
-    void deleteById(long id);*/
+    void deleteById(long id);
 
 }

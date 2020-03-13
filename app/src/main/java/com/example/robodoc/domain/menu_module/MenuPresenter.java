@@ -20,6 +20,7 @@ public class MenuPresenter {
 
     public MenuPresenter(MenuView menuView, Context context) {
         bloodRepository = new BloodRepository(context);
+        symptomRepository = new SymptomRepository(context);
         this.menuView = menuView;
     }
 
@@ -29,8 +30,8 @@ public class MenuPresenter {
 
     public void initDatabase() {
         bloodRepository.initBloodObjects();
-       // symptomRepository.initSymptomObjects();
-        //diseaseRepository.initDiseaseObject();
+        symptomRepository.initSymptomObjects();
+        diseaseRepository.initDiseaseObject();
     }
 
 

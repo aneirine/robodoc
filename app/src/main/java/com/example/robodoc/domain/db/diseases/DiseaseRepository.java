@@ -3,8 +3,11 @@ package com.example.robodoc.domain.db.diseases;
 import android.content.Context;
 
 import com.example.robodoc.domain.db.Database;
+import com.example.robodoc.domain.db.symptoms.SymptomDao;
 import com.example.robodoc.models.Disease;
+import com.example.robodoc.models.Symptom;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,6 +20,7 @@ public class DiseaseRepository {
     private DiseaseDao dao;
     private Context context;
 
+
     //Symptom dao
 
     public DiseaseRepository(Context context) {
@@ -25,21 +29,23 @@ public class DiseaseRepository {
     }
 
     public void initDiseaseObject() {
-        /*Disease [] diseases = {
-                new Disease("Dehydration",
+        SymptomDao symptomDao = Database.getInstance(context).getSymptomDao();
+
+        Disease[] diseases = {
+                new Disease("Dehydration", (ArrayList<Symptom>)
+                        Arrays.asList(symptomDao.findSymptomByNominalAndRange(HB, UPPER))
+                ),
+                new Disease("Blood clotting", (ArrayList<Symptom>)
                         Arrays.asList(
-                                presenter.getSymptomByNominalAndRange(HB, UPPER)
-                        )),
-                new Disease("Blood clotting",
-                        Arrays.asList(
-                                presenter.getSymptomByNominalAndRange(HB, UPPER),
-                                presenter.getSymptomByNominalAndRange(RBC, UPPER)
+                                symptomDao.findSymptomByNominalAndRange(HB, UPPER),
+                                symptomDao.findSymptomByNominalAndRange(RBC, UPPER)
                         ))
-                ))
-        }*/
+        };
+
+        dao.insertAll(diseases);
     }
 
- /*   public long insert(Disease disease) {
+    public long insert(Disease disease) {
         return dao.insert(disease);
     }
 
@@ -56,12 +62,12 @@ public class DiseaseRepository {
     }
 
     public List<Disease> getAll() {
-        return dao.getAllDisease();
+        return dao.getAllDiseases();
     }
 
     public Disease getById(long id) {
         return dao.getById(id);
     }
-*/
+
 
 }

@@ -7,11 +7,16 @@ import com.example.robodoc.models.Symptom;
 
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import static com.example.robodoc.models.enums.Nominal.HB;
 import static com.example.robodoc.models.enums.Nominal.RBC;
 import static com.example.robodoc.models.enums.Range.LOWER;
 import static com.example.robodoc.models.enums.Range.UPPER;
 
+@Getter
+@Setter
 public class SymptomRepository {
 
     private SymptomDao dao;
@@ -22,7 +27,7 @@ public class SymptomRepository {
         this.context = context;
         this.dao = Database.getInstance(context).getSymptomDao();
     }
-/*
+
 
     public void initSymptomObjects() {
         Symptom[] symptoms = {
@@ -58,6 +63,6 @@ public class SymptomRepository {
         return dao.getById(id);
     }
 
-*/
+
 
 }

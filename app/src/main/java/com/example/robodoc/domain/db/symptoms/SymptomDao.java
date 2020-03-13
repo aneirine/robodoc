@@ -7,7 +7,10 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.robodoc.models.Symptom;
+import com.example.robodoc.models.enums.Nominal;
+import com.example.robodoc.models.enums.Range;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -35,4 +38,6 @@ public interface SymptomDao {
     void deleteById(long id);
 
 
+    @Query("SELECT * From symptoms WHERE nominal = :nominal AND range = :range")
+    Symptom findSymptomByNominalAndRange(Nominal nominal, Range range);
 }
