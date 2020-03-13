@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey;
 import com.example.robodoc.models.enums.Gender;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,10 +26,10 @@ public class Patient {
     private String surname;
     private int age;
     private Gender gender;
-    private List<Analysis> analyses;
+    private ArrayList<Analysis> analyses;
 
     public Patient(String name, String surname, int age,
-                   Gender gender, List<Analysis> analyses) {
+                   Gender gender, ArrayList<Analysis> analyses) {
         this.name = name;
         this.surname = surname;
         this.age = age;

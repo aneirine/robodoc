@@ -2,6 +2,7 @@ package com.example.robodoc.domain.db.converters;
 
 import androidx.room.TypeConverter;
 
+import com.example.robodoc.models.Analysis;
 import com.example.robodoc.models.Symptom;
 import com.example.robodoc.models.enums.Gender;
 import com.example.robodoc.models.enums.Nominal;
@@ -11,9 +12,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.stream.Collectors.toList;
 
 public class Converters {
 
@@ -55,6 +53,18 @@ public class Converters {
     @TypeConverter
     public static ArrayList<Symptom> symptomListFormString(String value) {
         Type listType = new TypeToken<ArrayList<Symptom>>() {}.getType();
+        return new Gson().fromJson(value, listType);
+    }
+
+
+    @TypeConverter
+    public static String stringFromAnalysisList(ArrayList<Analysis> analyses) {
+        return new Gson().toJson(analyses);
+    }
+
+    @TypeConverter
+    public static ArrayList<Analysis> analysisListFormString(String value) {
+        Type listType = new TypeToken<ArrayList<Analysis>>() {}.getType();
         return new Gson().fromJson(value, listType);
     }
 
