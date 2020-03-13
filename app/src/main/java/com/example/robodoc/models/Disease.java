@@ -2,7 +2,9 @@ package com.example.robodoc.models;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -21,9 +23,9 @@ public class Disease {
     private long id;
 
     private String name;
-    private List<Symptom> symptoms;
+    private ArrayList<Symptom> symptoms;
 
-    public Disease(String name, List<Symptom> symptoms) {
+    public Disease(String name, ArrayList<Symptom> symptoms) {
         this.name = name;
         this.symptoms = symptoms;
     }
